@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#5352ed" />
+    <meta
+      name="description"
+      content="Wedged Protocol - Risk-managed liquidity hedging pools integrated with EulerSwap protocol. Protect your DeFi positions from impermanent loss with automated hedging strategies."
+    />
+    <meta name="keywords" content="DeFi, liquidity hedging, impermanent loss, EulerSwap, risk management, cryptocurrency, blockchain, yield farming" />
+    <meta name="author" content="Wedged Protocol" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://wedged.protocol/" />
+    <meta property="og:title" content="Wedged Protocol - Risk-Managed DeFi Liquidity Hedging" />
+    <meta property="og:description" content="Protect your liquidity positions from impermanent loss with automated hedging strategies integrated with EulerSwap protocol." />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://wedged.protocol/" />
+    <meta property="twitter:title" content="Wedged Protocol - Risk-Managed DeFi Liquidity Hedging" />
+    <meta property="twitter:description" content="Protect your liquidity positions from impermanent loss with automated hedging strategies." />
+    <meta property="twitter:image" content="%PUBLIC_URL%/twitter-image.png" />
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Favicon variants for different devices -->
+    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png">
+    
+    <!-- Security headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    
+    <!-- CSP for enhanced security -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; connect-src 'self' https: wss: ws:; frame-src 'none';" />
+    
+    <title>Wedged Protocol - Risk-Managed DeFi Liquidity Hedging</title>
+    
+    <!-- Structured data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Wedged Protocol",
+      "description": "Risk-managed liquidity hedging pools integrated with EulerSwap protocol",
+      "url": "https://wedged.protocol/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Wedged Protocol"
+      }
+    }
+    </script>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
+    
+    <!-- Loading styles to prevent FOUC -->
+    <style>
+      /* Critical CSS for initial load */
+      * {
+        box-sizing: border-box;
+      }
+      
+      body {
+        margin: 0;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #0f0f23;
+        color: #ffffff;
+        overflow-x: hidden;
+      }
+      
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+      }
+      
+      .loading-spinner {
+        width: 60px;
+        height: 60px;
+        border: 4px solid rgba(83, 82, 237, 0.1);
+        border-left: 4px solid #5352ed;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+      }
+      
+      .loading-text {
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 10px;
+      }
+      
+      .loading-subtext {
+        color: #a0a0a0;
+        font-size: 14px;
+        text-align: center;
+        max-width: 300px;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      .loading-screen.fade-out {
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      #root {
+        min-height: 100vh;
+      }
+      
+      /* Hide content until React loads */
+      .app-content {
+        opacity: 0;
+        transition: opacity 0.3s ease-in;
+      }
+      
+      .app-content.loaded {
+        opacity: 1;
+      }
+      
+      /* Error boundary styles */
+      .error-boundary {
+        padding: 40px;
+        text-align: center;
+        background-color: #1a1a2e;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .error-icon {
+        font-size: 64px;
+        color: #ff4757;
+        margin-bottom: 20px;
+      }
+      
+      .error-title {
+        font-size: 24px;
+        color: #ffffff;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+      
+      .error-message {
+        font-size: 16px;
+        color: #a0a0a0;
+        margin-bottom: 30px;
+        max-width: 500px;
+        line-height: 1.5;
+      }
+      
+      .error-actions {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .error-button {
+        padding: 12px 24px;
+        background-color: #5352ed;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: background-color 0.2s ease;
+      }
+      
+      .error-button:hover {
+        background-color: #4641d7;
+      }
+      
+      .error-button.secondary {
+        background-color: transparent;
+        border: 1px solid #5352ed;
+        color: #5352ed;
+      }
+      
+      .error-button.secondary:hover {
+        background-color: #5352ed;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <div class="error-boundary">
+        <div class="error-icon">⚠️</div>
+        <h1 class="error-title">JavaScript Required</h1>
+        <p class="error-message">
+          Wedged Protocol requires JavaScript to function properly. Please enable JavaScript in your browser settings and refresh the page.
+        </p>
+        <div class="error-actions">
+          <button class="error-button" onclick="window.location.reload()">
+            <i class="fas fa-refresh"></i>
+            Refresh Page
+          </button>
+        </div>
+      </div>
+    </noscript>
+    
+    <!-- Loading screen -->
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Loading Wedged Protocol</div>
+      <div class="loading-subtext">Connecting to blockchain and initializing risk management systems...</div>
+    </div>
+    
+    <!-- React app root -->
+    <div id="root"></div>
+    
+    <!-- Error fallback for unsupported browsers -->
+    <script>
+      // Check for basic browser support
+      if (!window.Promise || !window.fetch || !window.localStorage) {
+        document.getElementById('root').innerHTML = `
+          <div class="error-boundary">
+            <div class="error-icon">🌐</div>
+            <h1 class="error-title">Browser Not Supported</h1>
+            <p class="error-message">
+              Your browser does not support modern web features required by Wedged Protocol. 
+              Please update your browser or use a modern browser like Chrome, Firefox, Safari, or Edge.
+            </p>
+            <div class="error-actions">
+              <a href="https://browsehappy.com/" class="error-button" target="_blank">
+                <i class="fas fa-download"></i>
+                Update Browser
+              </a>
+            </div>
+          </div>
+        `;
+        document.getElementById('loading-screen').style.display = 'none';
+      }
+      
+      // Hide loading screen when React app loads
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const loadingScreen = document.getElementById('loading-screen');
+          if (loadingScreen) {
+            loadingScreen.classList.add('fade-out');
+            setTimeout(function() {
+              loadingScreen.style.display = 'none';
+            }, 500);
+          }
+        }, 1000); // Minimum loading time for better UX
+      });
+      
+      // Global error handler
+      window.addEventListener('error', function(event) {
+        console.error('Global error:', event.error);
+        
+        // Show error message if React hasn't loaded
+        if (!window.React && !document.querySelector('.App')) {
+          document.getElementById('root').innerHTML = `
+            <div class="error-boundary">
+              <div class="error-icon">❌</div>
+              <h1 class="error-title">Application Error</h1>
+              <p class="error-message">
+                An unexpected error occurred while loading the application. Please refresh the page or try again later.
+              </p>
+              <div class="error-actions">
+                <button class="error-button" onclick="window.location.reload()">
+                  <i class="fas fa-refresh"></i>
+                  Refresh Page
+                </button>
+                <a href="mailto:support@wedged.protocol" class="error-button secondary">
+                  <i class="fas fa-envelope"></i>
+                  Contact Support
+                </a>
+              </div>
+            </div>
+          `;
+          document.getElementById('loading-screen').style.display = 'none';
+        }
+      });
+      
+      // Unhandled promise rejection handler
+      window.addEventListener('unhandledrejection', function(event) {
+        console.error('Unhandled promise rejection:', event.reason);
+      });
+    </script>
+    
+    <!-- Web3 detection and wallet connection preparation -->
+    <script>
+      // Check for Web3 wallet availability
+      window.addEventListener('load', function() {
+        if (!window.ethereum) {
+          console.warn('No Web3 wallet detected');
+          // The app will handle this gracefully in React
+        } else {
+          console.log('Web3 wallet detected:', window.ethereum.isMetaMask ? 'MetaMask' : 'Unknown');
+        }
+      });
+    </script>
+    
+    <!-- Performance monitoring -->
+    <script>
+      // Basic performance monitoring
+      window.addEventListener('load', function() {
+        if ('performance' in window) {
+          const navigation = performance.getEntriesByType('navigation')[0];
+          console.log('Page load time:', navigation.loadEventEnd - navigation.loadEventStart, 'ms');
+        }
+      });
+    </script>
+  </body>
+</html>
